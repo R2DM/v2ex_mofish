@@ -1,0 +1,31 @@
+---
+title: "[<%= date %>] - V2EX 共 <%- v2ex_posts.length %> 条热门话题"
+labels: posts
+---
+
+# V2EX
+
+<%  for(let post of v2ex_posts) { %>
+  <details>
+    <summary>
+      <strong><%= post.title %></a></strong>
+    </summary>
+    <p style="font-size: 14px;">
+      <%= post.content %>
+    </p>
+    <% for(let replie of post.allReplies) { %>
+      <%= replie.replier %>：<%= replie.content %>
+    <% } %>
+  </details>
+
+  ![123](<%- post.imageUrl %>)
+
+  <p>
+    由 <a href="<%- post.member.url %>" target="_blank"><%= post.member.username %></a> 
+    于 <%= post.createdTimeFormat %> 
+    发表在 <a href="<%- post.node.url %>" target="_blank"><%= post.node.title %></a> 节点，
+    共 <a href="<%- post.url %>" target="_blank"><%= post.replies %> 条评论</a> 
+  </p>
+  <h2></h2>
+
+<%  }  %>

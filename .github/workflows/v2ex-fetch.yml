@@ -1,0 +1,59 @@
+name: 'v2ex-fetch'
+
+on:
+  schedule:
+    - cron: '50 23 * * *'
+  workflow_dispatch:  # 允许手动触发
+jobs:
+  v2ex-fetch-create-issue:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install WenQuanYi Micro Hei font
+        run: |
+          sudo apt-get update
+          sudo apt-get install fonts-wqy-microhei
+          sudo fc-cache -fv
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - run: npm i
+
+      - name: V2ex fetch post
+        run: node actions/v2ex-fetch.js
+
+      - name: Upload image to repository
+        run: |
+          IMAGE_PATH="assets/created-images/*.png"  # 图片路径
+          TARGET_PATH="assets/v2ex/"  # 上传到仓库的目标路径
+
+          mkdir -p $(dirname $TARGET_PATH)
+          cp $IMAGE_PATH $TARGET_PATH
+
+          git config --global user.name "Damao2250"
+          git config --global user.email "damao2250@gmail.com"
+          git add $TARGET_PATH  
+          git commit -m "Add v2ex images"
+          git push origin main
+
+      - name: Create github issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: github-issue.md
