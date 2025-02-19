@@ -1,9 +1,9 @@
 name: 'v2ex-fetch'
 
 on:
-  schedule:
-    - cron: '50 23 * * *'
   workflow_dispatch:  # 允许手动触发
+  schedule:
+    - cron: '3 0 * * *'
 jobs:
   v2ex-fetch-create-issue:
     runs-on: ubuntu-22.04
