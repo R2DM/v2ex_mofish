@@ -3,7 +3,7 @@ name: 'v2ex-fetch'
 on:
   workflow_dispatch:  # 允许手动触发
   schedule:
-    - cron: '3 0 * * *'
+    - cron: '30 15 * * *' # +8小时后才是东八区
 jobs:
   v2ex-fetch-create-issue:
     runs-on: ubuntu-22.04
