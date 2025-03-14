@@ -14,7 +14,7 @@ labels: posts
       <%= post.content %>
     </p>
     <% for(let replie of post.allReplies) { %>
-      <%= replie.replier %>：<%= replie.content %>
+      <%= replie.replier %>：<%= replie.content.replace(/@/g, "@ ") %>
     <% } %>
   </details>
 
