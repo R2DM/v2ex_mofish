@@ -8,7 +8,7 @@ labels: posts
 <%  for(let post of v2ex_posts) { %>
   <details>
     <summary>
-      <strong><%= post.title %></a></strong>
+      <strong><%= post.title.replace(/@/g, "@ ") %></a></strong>
     </summary>
     <p style="font-size: 14px;">
       <%= post.content %>
