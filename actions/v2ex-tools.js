@@ -73,7 +73,7 @@ const generateImg = async (data, day = "") => {
     : moment().utcOffset(8).format("YYYY-MM-DD-HHmmss")
   let temporaryPath = `assets/created-images/${now}-${data.id}_old.png`
   let outputPath = `assets/created-images/${now}-${data.id}.png`
-  let realPath = `https://raw.githubusercontent.com/Damao2250/v2ex_mofish/main/assets/v2ex/${now}-${data.id}.png`
+  let realPath = `https://raw.githubusercontent.com/R2DM/v2ex_mofish/main/assets/v2ex/${now}-${data.id}.png`
   await nodeHtmlToImage({
     output: temporaryPath,
     html: newDiv,
