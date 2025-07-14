@@ -45,8 +45,8 @@ jobs:
           mkdir -p $(dirname $TARGET_PATH)
           cp $IMAGE_PATH $TARGET_PATH
 
-          git config --global user.name "Damao2250"
-          git config --global user.email "damao2250@gmail.com"
+          git config --global user.name "R2DM"
+          git config --global user.email "2250658575@qq.com"
           git add $TARGET_PATH  
           git commit -m "Add v2ex images"
           git push origin main
