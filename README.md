@@ -4,7 +4,7 @@
 # 使用步骤
 ## 先fork到自己的仓库
 
-## 修改.github/workflows/v2ex-fetch.yml下的用户名和邮箱
+## 修改.github/workflows/v2ex-fetch.yml下的用户名和邮箱（48行左右）
 + 把“用户名”替换为自己的GitHub用户名（下同）
 + 把“邮箱”替换为自己的GitHub邮箱
 ```bash
